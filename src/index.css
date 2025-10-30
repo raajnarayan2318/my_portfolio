@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* ---- Remove the default blue link styles from Vite template ---- */
+/* Let components (like your navbar) control link colors */
+a, a:visited { color: inherit; text-decoration: inherit; }
+a:hover { color: inherit; }
+
+/* Optional: slightly smoother font rendering */
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* 2s temporary invert highlight for anchored cards (e.g., #proj-gtm) */
+.hash-highlight {
+  /* helps avoid text jitter on WebKit during filter animations */
+  -webkit-font-smoothing: antialiased;
+  will-change: filter;
+}
+
+.hash-highlight:target {
+  animation: cardInvertFlash 2s ease-in-out 1;
+}
+
+/* Invert for most of the duration, then restore to original */
+@keyframes cardInvertFlash {
+  0%   { filter: none; }
+  10%  { filter: invert(1) hue-rotate(180deg); }
+  90%  { filter: invert(1) hue-rotate(180deg); }
+  100% { filter: none; }
+}
+
+/* If a targeted card ever contains images/icons, this keeps them looking normal
+   while the container is inverted. (Double-invert cancels the effect.) */
+.hash-highlight:target img,
+.hash-highlight:target svg {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Accessibility: reduce motion users get a subtle outline instead of animation */
+@media (prefers-reduced-motion: reduce) {
+  .hash-highlight:target {
+    animation: none;
+    outline: 2px solid rgba(60,60,60,0.35);
+    outline-offset: 2px;
+  }
+}
