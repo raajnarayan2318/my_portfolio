@@ -17,11 +17,36 @@ function App() {
               <div className="text-sm font-semibold text-[#2f2b25] tracking-tight">
                 RAAJ NARAYAN RAO THIPPARTHY
               </div>
+
               <div className="text-[12px] text-[#6a5f4e]">
                 832-519-7135 | raajnarayan.vgf287@gmail.com
               </div>
-              <div className="text-[12px] text-[#6a5f4e] break-all">
+
+              {/* <div className="text-[12px] text-[#6a5f4e] break-all">
                 www.linkedin.com/in/raajnarayan
+              </div> */}
+
+              <div className="text-[12px] text-[#6a5f4e] break-all">
+                <a
+                  href="https://www.linkedin.com/in/raajnarayan/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 hover:text-[#2f2b25] transition-colors"
+                >
+                  www.linkedin.com/in/raajnarayan
+                </a>
+              </div>
+
+              {/* NEW: GitHub profile (clickable, opens in new tab) */}
+              <div className="text-[12px] text-[#6a5f4e] break-all">
+                <a
+                  href="https://github.com/raajnarayan2318"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#2f2b25] visited:text-[#2f2b25] underline decoration-transparent hover:!underline hover:decoration-[#2f2b25] underline-offset-[3px] decoration-2 transition-colors"
+                >
+                  github.com/raajnarayan2318
+                </a>
               </div>
             </div>
           </div>
@@ -334,7 +359,7 @@ function App() {
           </div>
         </section>
 
-        /* ===== EXPERIENCE SECTION ===== */
+        {/* ===== EXPERIENCE SECTION ===== */}
         <section id="experience" className="space-y-8 scroll-mt-24">
           {/* section header */}
           <div className="flex items-center gap-3">
@@ -518,17 +543,39 @@ function App() {
             </div>
 
             {/* Agency–Contractor Relationship */}
-            <div
+            {/* Agency–Contractor */}
+            <article
               id="proj-agency"
-              className="hash-highlight rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6 shadow-[0_30px_120px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_140px_rgba(0,0,0,0.12)] transition-shadow scroll-mt-28"
+              className="hash-highlight rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6 shadow-[0_30px_120px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_140px_rgba(0,0,0,0.12)] transition-shadow"
             >
-              <h4 className="text-[14px] font-semibold text-[#2f2b25] leading-snug tracking-tight">
+              <h3 className="text-[15px] font-semibold text-[#2f2b25] tracking-tight">
                 Agency–Contractor Relationship Strength &amp; Insights
-              </h4>
-              <p className="mt-2 text-[13px] text-[#4a4234] leading-relaxed">
-                Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams market size/share and account-health insights to prioritize outreach and measure impact over time.
-              </p>
-            </div>
+              </h3>
+
+              <div className="mt-2 text-[14px] text-[#4a4234] leading-relaxed space-y-2">
+                {/* Link line (colored like heading; underline on hover; wraps nicely) */}
+                <p className="break-all">
+                  <span className="font-semibold text-[#2f2b25]">Link: </span>
+                  <a
+                    href="https://github.com/raajnarayan2318/fpds-agency-vendor-strength"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#2f2b25] visited:text-[#2f2b25] underline decoration-transparent hover:!underline hover:decoration-[#2f2b25] underline-offset-[3px] decoration-2 transition-colors"
+                  >
+                    https://github.com/raajnarayan2318/fpds-agency-vendor-strength
+                  </a>
+                </p>
+
+                {/* Your exact description, unchanged */}
+                <p>
+                  Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest
+                  multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals
+                  (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that
+                  segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams
+                  market size/share and account-health insights to prioritize outreach and measure impact over time.
+                </p>
+              </div>
+            </article>
 
             {/* Customer Churn Model */}
             <div
