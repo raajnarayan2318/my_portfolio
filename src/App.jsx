@@ -513,7 +513,7 @@ function App() {
                 GTM Project
               </h4>
               <p className="mt-2 text-[13px] text-[#4a4234] leading-relaxed">
-                * I built a data-backed go-to-market strategy for an AI RFP automation product by extracting and structuring market data from multiple sources (custom scraping + ingestion), then engineering a set of comparative parameters to score segments and opportunities. Using those signals, I prioritized four segments (government/public sector, enterprise, SMB, consulting), defined validation criteria and positioning per segment, and designed the channels and pricing model (PLG/free trial + enterprise outbound + content/SEO; tiered/usage-based) with KPIs and feedback loops to move from pilot → beachhead → scale.
+                I built a data-backed go-to-market strategy for an AI RFP automation product by extracting and structuring market data from multiple sources (custom scraping + ingestion), then engineering a set of comparative parameters to score segments and opportunities. Using those signals, I prioritized four segments (government/public sector, enterprise, SMB, consulting), defined validation criteria and positioning per segment, and designed the channels and pricing model (PLG/free trial + enterprise outbound + content/SEO; tiered/usage-based) with KPIs and feedback loops to move from pilot → beachhead → scale.
               </p>
             </div>
 
@@ -526,7 +526,7 @@ function App() {
                 Agency–Contractor Relationship Strength &amp; Insights
               </h4>
               <p className="mt-2 text-[13px] text-[#4a4234] leading-relaxed">
-                * Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams market size/share and account-health insights to prioritize outreach and measure impact over time.
+                Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams market size/share and account-health insights to prioritize outreach and measure impact over time.
               </p>
             </div>
 
