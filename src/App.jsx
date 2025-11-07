@@ -1,6 +1,18 @@
-import raajPhoto from "./assets/IMG_6246.jpg"; // <-- put your photo in /src/assets and update the name if needed
+import { useState } from "react";
+import raajPhoto from "./assets/IMG_6246.jpg"; // put your photo in /src/assets
 
 function App() {
+  const [showCaseStudy, setShowCaseStudy] = useState(false);
+
+  // Smooth scroll + 2s highlight (relies on .hash-highlight.highlighted in your CSS)
+  const handleJump = (targetId) => {
+    const el = document.getElementById(targetId);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.classList.add("highlighted");
+    setTimeout(() => el.classList.remove("highlighted"), 2000);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#f8f5f1] via-[#fdfcf9] to-[#f3eee6] text-[#2a2a2a] scroll-smooth font-sans">
       {/* ===== TOP NAV / BRAND BAR ===== */}
@@ -22,28 +34,17 @@ function App() {
                 832-519-7135 | raajnarayan.vgf287@gmail.com
               </div>
 
-              {/* <div className="text-[12px] text-[#6a5f4e] break-all">
-                www.linkedin.com/in/raajnarayan
-              </div> */}
-
               <div className="text-[12px] text-[#6a5f4e] break-all">
-                <a
-                  href="https://www.linkedin.com/in/raajnarayan/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline underline-offset-4 hover:text-[#2f2b25] transition-colors"
-                >
-                  www.linkedin.com/in/raajnarayan
-                </a>
+                www.linkedin.com/in/raajnarayan
               </div>
 
-              {/* NEW: GitHub profile (clickable, opens in new tab) */}
+              {/* GitHub profile (clickable, opens in new tab) */}
               <div className="text-[12px] text-[#6a5f4e] break-all">
                 <a
                   href="https://github.com/raajnarayan2318"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2f2b25] visited:text-[#2f2b25] underline decoration-transparent hover:!underline hover:decoration-[#2f2b25] underline-offset-[3px] decoration-2 transition-colors"
+                  className="underline underline-offset-4 hover:text-[#2f2b25] transition-colors"
                 >
                   github.com/raajnarayan2318
                 </a>
@@ -91,6 +92,10 @@ function App() {
                 {/* LotusPetal AI */}
                 <a
                   href="#exp-lotuspetal"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("exp-lotuspetal");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="flex items-baseline justify-between text-[#2f2b25]">
@@ -105,6 +110,10 @@ function App() {
                 {/* Sakesh Solutions LLC */}
                 <a
                   href="#exp-sakesh"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("exp-sakesh");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="flex items-baseline justify-between text-[#2f2b25]">
@@ -119,6 +128,10 @@ function App() {
                 {/* Radiant Infosystems */}
                 <a
                   href="#exp-radiant"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("exp-radiant");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="flex items-baseline justify-between text-[#2f2b25]">
@@ -156,6 +169,10 @@ function App() {
               >
                 <a
                   href="#proj-gtm"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("proj-gtm");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="text-[#2f2b25] text-[13px] font-medium">
@@ -168,6 +185,10 @@ function App() {
 
                 <a
                   href="#proj-agency"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("proj-agency");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="text-[#2f2b25] text-[13px] font-medium">
@@ -180,6 +201,10 @@ function App() {
 
                 <a
                   href="#proj-churn"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump("proj-churn");
+                  }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
                   <div className="text-[#2f2b25] text-[13px] font-medium">
@@ -212,12 +237,9 @@ function App() {
 
       {/* ===== MAIN CONTENT WRAPPER ===== */}
       <main className="max-w-7xl mx-auto px-4 py-12 lg:py-16 space-y-20">
-
         {/* ===== HERO / INTRO ===== */}
         <section className="relative">
-          <div
-            className="absolute inset-x-0 -top-10 -z-10 mx-auto h-64 w-64 rounded-full blur-[110px] opacity-40 bg-[radial-gradient(circle_at_30%_30%,rgba(251,191,36,0.28)_0%,rgba(255,255,255,0)_70%)]"
-          />
+          <div className="absolute inset-x-0 -top-10 -z-10 mx-auto h-64 w-64 rounded-full blur-[110px] opacity-40 bg-[radial-gradient(circle_at_30%_30%,rgba(251,191,36,0.28)_0%,rgba(255,255,255,0)_70%)]" />
 
           <div className="grid lg:grid-cols-[1.5fr_1fr] gap-10 items-start">
             {/* left side: headline card */}
@@ -361,7 +383,6 @@ function App() {
 
         {/* ===== EXPERIENCE SECTION ===== */}
         <section id="experience" className="space-y-8 scroll-mt-24">
-          {/* section header */}
           <div className="flex items-center gap-3">
             <div className="text-[11px] font-semibold text-[#7a6e5c] tracking-wide uppercase">
               EXPERIENCE
@@ -375,9 +396,7 @@ function App() {
               id="exp-lotuspetal"
               className="hash-highlight relative overflow-hidden rounded-2xl border border-[#e6dfd3] bg-[#fffdf9]/80 shadow-[0_30px_120px_rgba(0,0,0,0.08)] p-6 scroll-mt-28"
             >
-              {/* warm accent bar */}
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber-300 to-amber-600 shadow-[0_0_15px_rgba(251,191,36,0.6)] rounded-tr-lg rounded-br-lg" />
-
               <div className="pl-4">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                   <div className="text-[15px] font-semibold text-[#2f2b25] leading-tight tracking-tight">
@@ -433,7 +452,6 @@ function App() {
               className="hash-highlight relative overflow-hidden rounded-2xl border border-[#e6dfd3] bg-[#fffdf9]/80 shadow-[0_30px_120px_rgba(0,0,0,0.08)] p-6 scroll-mt-28"
             >
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber-300 to-amber-600 shadow-[0_0_15px_rgba(251,191,36,0.6)] rounded-tr-lg rounded-br-lg" />
-
               <div className="pl-4">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                   <div className="text-[15px] font-semibold text-[#2f2b25] leading-tight tracking-tight">
@@ -459,7 +477,6 @@ function App() {
               className="hash-highlight relative overflow-hidden rounded-2xl border border-[#e6dfd3] bg-[#fffdf9]/80 shadow-[0_30px_120px_rgba(0,0,0,0.08)] p-6 scroll-mt-28"
             >
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-amber-300 to-amber-600 shadow-[0_0_15px_rgba(251,191,36,0.6)] rounded-tr-lg rounded-br-lg" />
-
               <div className="pl-4">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
                   <div className="text-[15px] font-semibold text-[#2f2b25] leading-tight tracking-tight">
@@ -493,6 +510,7 @@ function App() {
             </div>
           </div>
         </section>
+
         {/* ===== EDUCATION SECTION ===== */}
         <section id="education" className="space-y-8 scroll-mt-24">
           <div className="flex items-center gap-3">
@@ -542,7 +560,6 @@ function App() {
               </p>
             </div>
 
-            {/* Agency–Contractor Relationship */}
             {/* Agency–Contractor */}
             <article
               id="proj-agency"
@@ -560,10 +577,36 @@ function App() {
                     href="https://github.com/raajnarayan2318/fpds-agency-vendor-strength"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#2f2b25] visited:text-[#2f2b25] underline decoration-transparent hover:!underline hover:decoration-[#2f2b25] underline-offset-[3px] decoration-2 transition-colors"
+                    className="text-[#2f2b25] visited:text-[#2f2b25] hover:underline underline-offset-[3px] decoration-2 transition-colors"
                   >
                     https://github.com/raajnarayan2318/fpds-agency-vendor-strength
                   </a>
+                </p>
+
+                {/* NEW: Case Study trigger row */}
+                <p className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => setShowCaseStudy(true)}
+                    className="inline-flex items-center text-[#2f2b25] hover:underline underline-offset-[3px] decoration-2 transition-colors"
+                    aria-haspopup="dialog"
+                    aria-controls="case-study-modal"
+                  >
+                    Case Study
+                    {/* redirect-style icon */}
+                    <svg
+                      className="ml-1"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+                      />
+                    </svg>
+                  </button>
                 </p>
 
                 {/* Your exact description, unchanged */}
@@ -644,6 +687,169 @@ function App() {
           © {new Date().getFullYear()} RAAJ NARAYAN RAO THIPPARTHY. All rights reserved.
         </footer>
       </main>
+
+      {/* ===== CASE STUDY MODAL (appears when showCaseStudy is true) ===== */}
+      {showCaseStudy && (
+        <div
+          id="case-study-modal"
+          className="fixed inset-0 z-[100]"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setShowCaseStudy(false)} // click backdrop to close
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+
+          {/* Dialog wrapper */}
+          <div
+            className="absolute inset-0 flex items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+          >
+            {/* OUTER PANEL — NOT SCROLLING */}
+            <div className="relative w-[min(92vw,900px)] max-h-[88vh] rounded-2xl border border-[#e6dfd3] bg-[#fffcf7] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+              {/* FLOATING CLOSE (top-left, stays while inner scrolls) */}
+              <button
+                type="button"
+                onClick={() => setShowCaseStudy(false)}
+                className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg text-[#2f2b25] hover:bg-black/5 focus:outline-none z-10"
+                aria-label="Close case study"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29l6.29 6.3 6.29-6.3 1.42 1.42Z"
+                  />
+                </svg>
+              </button>
+
+              {/* INNER SCROLL AREA — ONLY THIS SCROLLS */}
+              <div className="px-6 py-6 sm:px-8 sm:py-8 text-[#2f2b25] max-h-[80vh] overflow-y-auto">
+                <h2 className="text-2xl font-bold leading-tight tracking-tight">
+                  Enhancing Federal Procurement Outcomes Through Relationship Analytics &amp; AI
+                </h2>
+                <div className="mt-1 text-sm text-[#6a5f4e]">
+                  Case Study | Data Engineering + Analytics + AI
+                </div>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Overview</h3>
+                <p className="mt-2">
+                  This project transforms raw FPDS federal contract data into a data-driven relationship intelligence
+                  system that evaluates the strength of engagement between vendors and federal agencies.
+                </p>
+                <p className="mt-2">
+                  Using PostgreSQL, Python, and Tableau, I built a full pipeline that computes vendor–agency relationship scores,
+                  tiers vendors, and delivers strategic insights for both contractors and government teams.
+                </p>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Objectives</h3>
+                <ul className="mt-2 list-disc pl-5 space-y-1">
+                  <li>Clean and model FPDS datasets using SQL</li>
+                  <li>Engineer vendor–agency metrics (recent dollars, touches, tenure, recency)</li>
+                  <li>Create a scoring system aligned with procurement logic</li>
+                  <li>Build dashboards for agency/vendor intelligence</li>
+                  <li>Propose an AI roadmap for predictive procurement analytics</li>
+                </ul>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Technical Architecture</h3>
+                <p className="mt-2">
+                  <span className="font-semibold">Data Sources:</span> FPDS Excel → PostgreSQL
+                </p>
+                <p className="mt-2">
+                  <span className="font-semibold">Tech Stack:</span>
+                </p>
+                <ul className="mt-1 list-disc pl-5 space-y-1">
+                  <li>Database: PostgreSQL</li>
+                  <li>ETL &amp; Analytics: Python, Pandas, SQLAlchemy</li>
+                  <li>Visualization: Tableau</li>
+                  <li>Version Control: Git + GitHub</li>
+                  <li>Case Study Document: Word (generated)</li>
+                </ul>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Relationship Scoring Model</h3>
+                <p className="mt-2 font-semibold">Inputs:</p>
+                <ul className="mt-1 list-disc pl-5 space-y-1">
+                  <li>Recent 12-month dollars</li>
+                  <li>Touches (contract frequency)</li>
+                  <li>Tenure (years)</li>
+                  <li>Recency (18-month recency flag)</li>
+                </ul>
+
+                <p className="mt-3 font-semibold">Weighting:</p>
+                <ul className="mt-1 list-disc pl-5 space-y-1">
+                  <li>Dollars: 50%</li>
+                  <li>Tenure: 30%</li>
+                  <li>Touches: 20%</li>
+                  <li>Recency Adjustment: −15% penalty if inactive</li>
+                </ul>
+
+                <p className="mt-3 font-semibold">Outputs:</p>
+                <ul className="mt-1 list-disc pl-5 space-y-1">
+                  <li>Relationship Strength Score (0–100)</li>
+                  <li>Vendor Tier Classification</li>
+                  <li>Strategic Partner</li>
+                  <li>Competitive Partner</li>
+                  <li>Occasional Partner</li>
+                  <li>Dormant Partner</li>
+                </ul>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Value for Agencies</h3>
+                <ul className="mt-2 list-disc pl-5 space-y-1">
+                  <li>Identify long-term strategic suppliers</li>
+                  <li>Reduce contracting risk via data transparency</li>
+                  <li>Improve award decisions with objective metrics</li>
+                  <li>Optimize vendor portfolios through tiering</li>
+                </ul>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Value for Vendors</h3>
+                <ul className="mt-2 list-disc pl-5 space-y-1">
+                  <li>Benchmark competitiveness across agencies</li>
+                  <li>Improve bid targeting</li>
+                  <li>Detect weakening relationships early</li>
+                  <li>Strategize federal growth based on data</li>
+                </ul>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">AI Integration Roadmap</h3>
+                <p className="mt-2 font-semibold">Phase 1 – Predictive Award Modeling</p>
+                <p className="mt-1">Forecast vendor win probability and expected obligations.</p>
+
+                <p className="mt-3 font-semibold">Phase 2 – AI Vendor Recommendation Engine</p>
+                <p className="mt-1">Recommend top vendors for specific NAICS, PSC, or mission areas.</p>
+
+                <p className="mt-3 font-semibold">Phase 3 – Early Warning System</p>
+                <p className="mt-1">AI flags declining touches, drops in spending, or relationship gaps.</p>
+
+                <p className="mt-3 font-semibold">Phase 4 – AI Procurement Copilot</p>
+                <p className="mt-1">Natural language interface for contracting offices and vendors.</p>
+
+                <div className="my-4 text-center text-[#6a5f4e]">⸻</div>
+
+                <h3 className="text-lg font-semibold">Business Outcomes</h3>
+                <ul className="mt-2 list-disc pl-5 space-y-1">
+                  <li>Reduced procurement decision risk</li>
+                  <li>Improved vendor selection accuracy</li>
+                  <li>Early detection of contracting issues</li>
+                  <li>Stronger, more strategic agency-vendor partnerships</li>
+                  <li>Foundation for AI-driven procurement modernization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
