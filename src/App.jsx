@@ -3,6 +3,7 @@ import raajPhoto from "./assets/IMG_6246.jpg"; // put your photo in /src/assets
 
 function App() {
   const [showCaseStudy, setShowCaseStudy] = useState(false);
+  const [activeProject, setActiveProject] = useState(null); // { id, title, description, github, caseStudy }
 
   // Smooth scroll + 2s highlight (relies on .hash-highlight.highlighted in your CSS)
   const handleJump = (targetId) => {
@@ -11,6 +12,50 @@ function App() {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     el.classList.add("highlighted");
     setTimeout(() => el.classList.remove("highlighted"), 2000);
+  };
+
+  // ===== Project Data (titles only in the grid; open modal for details) =====
+  const projects = [
+    {
+      id: "gtm",
+      title: "GTM Project",
+      description:
+        "I built a data-backed go-to-market strategy for an AI RFP automation product by extracting and structuring market data from multiple sources (custom scraping + ingestion), then engineering a set of comparative parameters to score segments and opportunities. Using those signals, I prioritized four segments (government/public sector, enterprise, SMB, consulting), defined validation criteria and positioning per segment, and designed the channels and pricing model (PLG/free trial + enterprise outbound + content/SEO; tiered/usage-based) with KPIs and feedback loops to move from pilot → beachhead → scale.",
+      github: null,
+      caseStudy: false,
+    },
+    {
+      id: "agency",
+      title: "Agency–Contractor Relationship Strength & Insights",
+      description:
+        "Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams market size/share and account-health insights to prioritize outreach and measure impact over time.",
+      github: "https://github.com/raajnarayan2318/fpds-agency-vendor-strength",
+      caseStudy: true, // opens the detailed case study modal
+    },
+    {
+      id: "churn",
+      title: "Customer Churn Model",
+      description:
+        "Built a supervised learning pipeline as a student data analyst to predict churn: performed data cleaning and feature engineering (tenure, usage frequency, recency, support tickets), trained baseline logistic regression and tree-based models in Python (pandas, NumPy, scikit-learn), evaluated with ROC-AUC/precision-recall, and created cohort/driver visuals in Power BI. Used SQL for feature aggregation and delivered retention recommendations based on top drivers.",
+      github: null,
+      caseStudy: false,
+    },
+    {
+      id: "ecom",
+      title: "E-Commerce Delivery Intelligence Platform",
+      description:
+        "Built an end-to-end e-commerce analytics and machine learning pipeline using DuckDB, SQL, and Python (Pandas, Scikit-learn, Streamlit) to transform raw marketplace order data into actionable delivery insights. Modeled shipping timelines, engineered features (delivery gaps, customer–seller distance signals, freight patterns, seasonality), and trained a classifier to score late-delivery risk for new orders. Developed an interactive dashboard with KPIs, visual diagnostics, and a real-time prediction tool that helps operations teams identify high-risk shipments, optimize logistics decisions, and improve overall customer delivery performance.",
+      github: "https://github.com/raajnarayan2318/olist-analytics-project",
+      caseStudy: false,
+    },
+  ];
+
+  // Convenience lookup for dropdown handlers
+  const projectIds = {
+    gtm: "proj-gtm",
+    agency: "proj-agency",
+    churn: "proj-churn",
+    ecom: "proj-ecom",
   };
 
   return (
@@ -171,7 +216,7 @@ function App() {
                   href="#proj-gtm"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleJump("proj-gtm");
+                    handleJump(projectIds.gtm);
                   }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
@@ -187,7 +232,7 @@ function App() {
                   href="#proj-agency"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleJump("proj-agency");
+                    handleJump(projectIds.agency);
                   }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
@@ -203,7 +248,7 @@ function App() {
                   href="#proj-churn"
                   onClick={(e) => {
                     e.preventDefault();
-                    handleJump("proj-churn");
+                    handleJump(projectIds.churn);
                   }}
                   className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
                 >
@@ -212,6 +257,22 @@ function App() {
                   </div>
                   <div className="mt-0.5 text-[12px] text-[#6a5f4e]">
                     Student ML pipeline & dashboards
+                  </div>
+                </a>
+
+                <a
+                  href="#proj-ecom"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleJump(projectIds.ecom);
+                  }}
+                  className="block rounded-lg px-4 py-3 hover:bg-[#f5f0e6] transition-colors"
+                >
+                  <div className="text-[#2f2b25] text-[13px] font-medium">
+                    E-Commerce Delivery Intelligence Platform
+                  </div>
+                  <div className="mt-0.5 text-[12px] text-[#6a5f4e]">
+                    Late-delivery risk scoring & dashboard
                   </div>
                 </a>
               </div>
@@ -423,7 +484,6 @@ function App() {
                   <li>
                     Defined and implemented Go-to-Market KPI frameworks with executive teams to monitor customer pipeline
                     health, usage patterns, and retention metrics — improving visibility and driving a 40% increase in conversion
-                    insights
                   </li>
                   <li>
                     Authored 11+ QA test scripts that produced benchmark datasets used for model performance analysis, directly
@@ -546,92 +606,33 @@ function App() {
             <div className="flex-1 h-px bg-gradient-to-r from-[#d1c4ad] to-transparent" />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* GTM Project */}
-            <div
-              id="proj-gtm"
-              className="hash-highlight rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6 shadow-[0_30px_120px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_140px_rgba(0,0,0,0.12)] transition-shadow scroll-mt-28"
-            >
-              <h4 className="text-[14px] font-semibold text-[#2f2b25] leading-snug tracking-tight">
-                GTM Project
-              </h4>
-              <p className="mt-2 text-[13px] text-[#4a4234] leading-relaxed">
-                I built a data-backed go-to-market strategy for an AI RFP automation product by extracting and structuring market data from multiple sources (custom scraping + ingestion), then engineering a set of comparative parameters to score segments and opportunities. Using those signals, I prioritized four segments (government/public sector, enterprise, SMB, consulting), defined validation criteria and positioning per segment, and designed the channels and pricing model (PLG/free trial + enterprise outbound + content/SEO; tiered/usage-based) with KPIs and feedback loops to move from pilot → beachhead → scale.
-              </p>
-            </div>
-
-            {/* Agency–Contractor */}
-            <article
-              id="proj-agency"
-              className="hash-highlight rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6 shadow-[0_30px_120px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_140px_rgba(0,0,0,0.12)] transition-shadow"
-            >
-              <h3 className="text-[15px] font-semibold text-[#2f2b25] tracking-tight">
-                Agency–Contractor Relationship Strength &amp; Insights
-              </h3>
-
-              <div className="mt-2 text-[14px] text-[#4a4234] leading-relaxed space-y-2">
-                {/* Link line (colored like heading; underline on hover; wraps nicely) */}
-                <p className="break-all">
-                  <span className="font-semibold text-[#2f2b25]">Link: </span>
-                  <a
-                    href="https://github.com/raajnarayan2318/fpds-agency-vendor-strength"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#2f2b25] visited:text-[#2f2b25] hover:underline underline-offset-[3px] decoration-2 transition-colors"
-                  >
-                    https://github.com/raajnarayan2318/fpds-agency-vendor-strength
-                  </a>
-                </p>
-
-                {/* NEW: Case Study trigger row */}
-                <p className="flex items-center gap-1">
-                  <button
-                    type="button"
-                    onClick={() => setShowCaseStudy(true)}
-                    className="inline-flex items-center text-[#2f2b25] hover:underline underline-offset-[3px] decoration-2 transition-colors"
-                    aria-haspopup="dialog"
-                    aria-controls="case-study-modal"
-                  >
-                    Case Study
-                    {/* redirect-style icon */}
-                    <svg
-                      className="ml-1"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
-                      />
-                    </svg>
-                  </button>
-                </p>
-
-                {/* Your exact description, unchanged */}
-                <p>
-                  Developed an end-to-end analytics pipeline in PostgreSQL and Python (Pandas, NumPy, Selenium, Matplotlib) to ingest
-                  multi-source contract data, normalize it, and quantify agency–contractor relationship strength. Engineered signals
-                  (recent spend, interaction volume, tenure, recency) into a composite score, then built visuals and scorecards that
-                  segment vendors into tiers and surface re-engagement and greenfield opportunities. The deliverable gives BD teams
-                  market size/share and account-health insights to prioritize outreach and measure impact over time.
-                </p>
+          {/* Title-only, clickable cards with invert-on-hover; each opens a modal */}
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {projects.map((p) => (
+              <div
+                key={p.id}
+                id={`proj-${p.id}`}
+                role="button"
+                tabIndex={0}
+                onClick={() => setActiveProject(p)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveProject(p);
+                  }
+                }}
+                className="
+                  hash-highlight group rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6
+                  shadow-[0_30px_120px_rgba(0,0,0,0.08)]
+                  transition-colors cursor-pointer
+                  hover:bg-[#2f2b25] hover:text-[#fdfcf9]
+                "
+              >
+                <h4 className="text-[14px] font-semibold text-[#2f2b25] group-hover:text-[#fdfcf9] leading-snug tracking-tight">
+                  {p.title}
+                </h4>
               </div>
-            </article>
-
-            {/* Customer Churn Model */}
-            <div
-              id="proj-churn"
-              className="hash-highlight rounded-2xl border border-[#e6dfd3] bg-[#ffffff]/80 p-6 shadow-[0_30px_120px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_140px_rgba(0,0,0,0.12)] transition-shadow scroll-mt-28"
-            >
-              <h4 className="text-[14px] font-semibold text-[#2f2b25] leading-snug tracking-tight">
-                Customer Churn Model
-              </h4>
-              <p className="mt-2 text-[13px] text-[#4a4234] leading-relaxed">
-                Built a supervised learning pipeline as a student data analyst to predict churn: performed data cleaning and feature engineering (tenure, usage frequency, recency, support tickets), trained baseline logistic regression and tree-based models in Python (pandas, NumPy, scikit-learn), evaluated with ROC-AUC/precision-recall, and created cohort/driver visuals in Power BI. Used SQL for feature aggregation and delivered retention recommendations based on top drivers.
-              </p>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -688,14 +689,100 @@ function App() {
         </footer>
       </main>
 
-      {/* ===== CASE STUDY MODAL (appears when showCaseStudy is true) ===== */}
+      {/* ===== PROJECT MODAL ===== */}
+      {activeProject && (
+        <div
+          className="fixed inset-0 z-[95]"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setActiveProject(null)}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+
+          {/* Centered panel */}
+          <div
+            className="absolute inset-0 flex items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* OUTER (not scrolling) */}
+            <div className="relative w-[min(92vw,900px)] max-h-[88vh] rounded-2xl border border-[#e6dfd3] bg-[#fffcf7] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
+              {/* FLOATING CLOSE (moved further top-left) */}
+              <button
+                type="button"
+                onClick={() => setActiveProject(null)}
+                className="absolute -left-3 -top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#fffcf7] border border-[#e6dfd3] shadow hover:bg-black/5 focus:outline-none z-10"
+                aria-label="Close project"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M18.3 5.71L12 12l6.3 6.29-1.41 1.42L10.59 13.4l-6.3 6.3-1.41-1.42L9.17 12 2.88 5.71 4.3 4.29l6.29 6.3 6.29-6.3 1.42 1.42Z"
+                  />
+                </svg>
+              </button>
+
+              {/* INNER SCROLL AREA */}
+              <div className="px-6 py-6 sm:px-8 sm:py-8 text-[#2f2b25] max-h-[80vh] overflow-y-auto">
+                <h2 className="text-xl font-bold leading-tight tracking-tight">
+                  {activeProject.title}
+                </h2>
+
+                {/* Optional GitHub link */}
+                {activeProject.github && (
+                  <p className="mt-2 break-all">
+                    <span className="font-semibold">GitHub: </span>
+                    <a
+                      href={activeProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[#2f2b25] hover:underline underline-offset-4 decoration-2"
+                    >
+                      {activeProject.github}
+                    </a>
+                  </p>
+                )}
+
+                {/* Optional Case Study trigger */}
+                {activeProject.caseStudy && (
+                  <p className="mt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowCaseStudy(true)}
+                      className="inline-flex items-center text-[#2f2b25] hover:underline underline-offset-4 decoration-2"
+                    >
+                      Case Study
+                      <svg
+                        className="ml-1"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+                        />
+                      </svg>
+                    </button>
+                  </p>
+                )}
+
+                <div className="mt-4 leading-relaxed">{activeProject.description}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== CASE STUDY MODAL ===== */}
       {showCaseStudy && (
         <div
           id="case-study-modal"
           className="fixed inset-0 z-[100]"
           role="dialog"
           aria-modal="true"
-          onClick={() => setShowCaseStudy(false)} // click backdrop to close
+          onClick={() => setShowCaseStudy(false)}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -703,15 +790,15 @@ function App() {
           {/* Dialog wrapper */}
           <div
             className="absolute inset-0 flex items-center justify-center p-4"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            onClick={(e) => e.stopPropagation()}
           >
             {/* OUTER PANEL — NOT SCROLLING */}
             <div className="relative w-[min(92vw,900px)] max-h-[88vh] rounded-2xl border border-[#e6dfd3] bg-[#fffcf7] shadow-[0_40px_120px_rgba(0,0,0,0.25)]">
-              {/* FLOATING CLOSE (top-left, stays while inner scrolls) */}
+              {/* FLOATING CLOSE (moved further top-left) */}
               <button
                 type="button"
                 onClick={() => setShowCaseStudy(false)}
-                className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg text-[#2f2b25] hover:bg-black/5 focus:outline-none z-10"
+                className="absolute -left-3 -top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#fffcf7] border border-[#e6dfd3] shadow hover:bg-black/5 focus:outline-none z-10"
                 aria-label="Close case study"
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
@@ -722,7 +809,7 @@ function App() {
                 </svg>
               </button>
 
-              {/* INNER SCROLL AREA — ONLY THIS SCROLLS */}
+              {/* INNER SCROLL AREA */}
               <div className="px-6 py-6 sm:px-8 sm:py-8 text-[#2f2b25] max-h-[80vh] overflow-y-auto">
                 <h2 className="text-2xl font-bold leading-tight tracking-tight">
                   Enhancing Federal Procurement Outcomes Through Relationship Analytics &amp; AI
